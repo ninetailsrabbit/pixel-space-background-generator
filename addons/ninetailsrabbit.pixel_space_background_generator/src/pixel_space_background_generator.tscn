@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://addons/ninetailsrabbit.pixel_space_background_generator/src/pixel_space_background_generator.gd" id="1_q17ry"]
 [ext_resource type="Shader" path="res://addons/ninetailsrabbit.pixel_space_background_generator/src/shaders/stars.gdshader" id="2_3i42h"]
 [ext_resource type="Shader" path="res://addons/ninetailsrabbit.pixel_space_background_generator/src/shaders/nebulae.gdshader" id="2_fo25n"]
-[ext_resource type="Texture2D" uid="uid://l5r5amdvbt35" path="res://addons/ninetailsrabbit.pixel_space_background_generator/src/color_schemes/Colorscheme.tres" id="3_xub3c"]
+[ext_resource type="Texture2D" uid="uid://l5r5amdvbt35" path="res://addons/ninetailsrabbit.pixel_space_background_generator/src/color_schemes/desert.tres" id="3_xub3c"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vjcfl"]
 shader = ExtResource("2_3i42h")
