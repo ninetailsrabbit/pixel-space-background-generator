@@ -14,4 +14,3 @@ script = ExtResource("2_qpi73")
 
 [node name="PixelSpaceBackgroundGenerator" parent="." instance=ExtResource("2_2uncr")]
 layout_mode = 1
-tiled = true

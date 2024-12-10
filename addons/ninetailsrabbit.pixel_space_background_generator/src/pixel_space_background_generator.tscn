@@ -8,8 +8,8 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vjcfl"]
 shader = ExtResource("2_3i42h")
 shader_parameter/size = 10.0
-shader_parameter/OCTAVES = null
-shader_parameter/seed = 1.0
+shader_parameter/OCTAVES = 8
+shader_parameter/seed = 2.815
 shader_parameter/pixels = 500.0
 shader_parameter/should_tile = false
 shader_parameter/reduce_background = false
@@ -19,8 +19,8 @@ shader_parameter/colorscheme = ExtResource("3_xub3c")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xwh1x"]
 shader = ExtResource("2_fo25n")
 shader_parameter/size = 5.0
-shader_parameter/OCTAVES = null
-shader_parameter/seed = 1.0
+shader_parameter/OCTAVES = 3
+shader_parameter/seed = 4.486
 shader_parameter/pixels = 500.0
 shader_parameter/background_color = null
 shader_parameter/should_tile = true
@@ -36,6 +36,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_q17ry")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Background" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0901961, 0.0901961, 0.0666667, 1)
 
 [node name="Stars" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_vjcfl")
