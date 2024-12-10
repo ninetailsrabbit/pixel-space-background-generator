@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://csdyi0b7c1wf1"]
+
+[ext_resource type="PackedScene" uid="uid://b66n0eejsls3y" path="res://addons/ninetailsrabbit.pixel_space_background_generator/src/pixel_space_background_generator.tscn" id="2_2uncr"]
+[ext_resource type="Script" path="res://demo/test.gd" id="2_qpi73"]
+
+[node name="Test" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_qpi73")
+
+[node name="PixelSpaceBackgroundGenerator" parent="." instance=ExtResource("2_2uncr")]
+layout_mode = 1
+tiled = true
