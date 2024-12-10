@@ -1,10 +1,10 @@
 @tool
 class_name MyPluginSettings extends RefCounted
 
-const PluginPrefixName: String = "my_plugin" ## The folder name
-const GitRepositoryName: String = "my-plugin"
+const PluginPrefixName: String = "ninetailsrabbit.pixel_space_background_generator" ## The folder name
+const GitRepositoryName: String = "pixel-space-background-generator"
 
-static var PluginName: String = "MyPlugin"
+static var PluginName: String = "Pixel-Space-Background-Generator"
 static var PluginProjectName: String = ProjectSettings.get_setting("application/config/name")
 static var PluginBasePath: String = "res://addons/%s" % PluginPrefixName
 static var PluginLocalConfigFilePath = "%s/plugin.cfg" % PluginBasePath
