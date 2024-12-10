@@ -27,6 +27,16 @@ const DefaultBackgroundColor: Color = Color("171711")
 		if value != current_color_scheme:
 			current_color_scheme = value
 			_update()
+@export var show_stars_behind: bool = true:
+	set(value):
+		if value != show_stars_behind:
+			show_stars_behind = value
+			_update()
+@export var show_planets_behind: bool = true:
+	set(value):
+		if value != show_planets_behind:
+			show_planets_behind = value
+			_update()
 @export_category("Stars")
 @export var display_stars: bool = true:
 	set(value):
@@ -118,8 +128,8 @@ func _enter_tree() -> void:
 func _ready() -> void:
 	change_background_color(background_color)
 	
-	stars_container.show_behind_parent = true
-	planet_container.show_behind_parent = true
+	stars_container.show_behind_parent = show_stars_behind
+	planet_container.show_behind_parent = show_planets_behind
 	
 	aspect = _calculate_aspect()
 	resized.connect(on_resized)
@@ -146,9 +156,9 @@ func _update() -> void:
 
 func _update_stars() -> void:
 	stars_dust.visible = display_stars_dust
-
 	stars_container.visible = display_stars
-
+	stars_container.show_behind_parent = show_stars_behind
+	
 	stars_dust.material.set_shader_parameter("should_tile", tiled)
 	stars_dust.material.set_shader_parameter("reduce_background", reduce_background)
 	stars_dust.material.set_shader_parameter("colorscheme", current_color_scheme.gradient)
@@ -162,10 +172,12 @@ func _update_stars() -> void:
 
 func _update_planets() -> void:
 	planet_container.visible = display_planets
+	planet_container.show_behind_parent = show_planets_behind
 	
 	if display_planets and planet_objects.is_empty() \
-		or fixed_amount_of_planets > 0 and (planet_objects.size() != fixed_amount_of_planets):
+		or planet_objects.size() != fixed_amount_of_planets:
 		_create_planets()
+
 
 	for planet in planet_objects:
 		planet.material.set_shader_parameter("colorscheme", current_color_scheme.gradient)
