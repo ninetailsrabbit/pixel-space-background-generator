@@ -5,16 +5,16 @@
 [ext_resource type="Texture2D" uid="uid://l5r5amdvbt35" path="res://addons/ninetailsrabbit.pixel_space_background_generator/src/color_schemes/desert.tres" id="2_uhua0"]
 [ext_resource type="Texture2D" uid="uid://rl7irgwqmaef" path="res://addons/ninetailsrabbit.pixel_space_background_generator/assets/textures/100x100.png" id="3_bo8lh"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_pm8mx"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f8sbj"]
 shader = ExtResource("1_aywri")
 shader_parameter/size = 5.365
 shader_parameter/OCTAVES = 3
-shader_parameter/seed = 1.561
-shader_parameter/pixels = 500.0
-shader_parameter/light_origin = Vector2(1.617, 0.637)
+shader_parameter/seed = 2.831
+shader_parameter/pixels = 100.0
+shader_parameter/light_origin = Vector2(0.353, 0.181)
 shader_parameter/colorscheme = ExtResource("2_uhua0")
 
 [node name="Planet" type="Sprite2D"]
-material = SubResource("ShaderMaterial_pm8mx")
+material = SubResource("ShaderMaterial_f8sbj")
 texture = ExtResource("3_bo8lh")
 script = ExtResource("1_t4gu6")
