@@ -1,39 +1,131 @@
-[gd_scene load_steps=8 format=3 uid="uid://b66n0eejsls3y"]
+[gd_scene load_steps=34 format=3 uid="uid://b66n0eejsls3y"]
 
 [ext_resource type="Script" path="res://addons/ninetailsrabbit.pixel_space_background_generator/src/pixel_space_background_generator.gd" id="1_q17ry"]
 [ext_resource type="Shader" path="res://addons/ninetailsrabbit.pixel_space_background_generator/src/shaders/stars.gdshader" id="2_3i42h"]
 [ext_resource type="Shader" path="res://addons/ninetailsrabbit.pixel_space_background_generator/src/shaders/nebulae.gdshader" id="2_fo25n"]
+[ext_resource type="PackedScene" uid="uid://c2c2skcgqe6cy" path="res://addons/ninetailsrabbit.pixel_space_background_generator/src/components/background_star.tscn" id="4_do460"]
+[ext_resource type="Shader" path="res://addons/ninetailsrabbit.pixel_space_background_generator/src/shaders/background_star.gdshader" id="5_wrmhd"]
+[ext_resource type="Texture2D" uid="uid://5l1y64gov0sk" path="res://addons/ninetailsrabbit.pixel_space_background_generator/assets/textures/stars-special.png" id="6_pk6iv"]
+[ext_resource type="Script" path="res://addons/ninetailsrabbit.pixel_space_background_generator/src/components/background_star.gd" id="7_qjsh2"]
 
-[sub_resource type="Gradient" id="Gradient_0t5fp"]
+[sub_resource type="Gradient" id="Gradient_ejxgq"]
 offsets = PackedFloat32Array(0, 0, 0.143, 0.286, 0.429, 0.571, 0.714, 0.857, 1)
-colors = PackedColorArray(0.0666667, 0.0941176, 0.215686, 1, 0.172549, 0.290196, 0.470588, 1, 0.219608, 0.458824, 0.631373, 1, 0.545098, 0.792157, 0.866667, 1, 0.45098, 0.552941, 0.615686, 1, 0.654902, 0.737255, 0.788235, 1, 0.839216, 0.882353, 0.913725, 1, 1, 1, 1, 1, 0.12549, 0.156863, 0.305882, 1)
+colors = PackedColorArray(0.12549, 0.133333, 0.0823529, 1, 0.588235, 0.235294, 0.235294, 1, 0.792157, 0.352941, 0.180392, 1, 1, 0.470588, 0.192157, 1, 0.952941, 0.6, 0.286275, 1, 0.921569, 0.760784, 0.458824, 1, 0.87451, 0.843137, 0.521569, 1, 0.227451, 0.156863, 0.00784314, 1, 0, 0, 0, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_7rapr"]
-gradient = SubResource("Gradient_0t5fp")
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4g7p5"]
+gradient = SubResource("Gradient_ejxgq")
 width = 2048
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vjcfl"]
 shader = ExtResource("2_3i42h")
 shader_parameter/size = 10.0
 shader_parameter/OCTAVES = 8
-shader_parameter/seed = 4.1396
+shader_parameter/seed = 2.69467
 shader_parameter/pixels = 1280.0
-shader_parameter/should_tile = false
+shader_parameter/should_tile = true
 shader_parameter/reduce_background = false
 shader_parameter/uv_correct = Vector2(1.77778, 1)
-shader_parameter/colorscheme = SubResource("GradientTexture1D_7rapr")
+shader_parameter/colorscheme = SubResource("GradientTexture1D_4g7p5")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xwh1x"]
 shader = ExtResource("2_fo25n")
 shader_parameter/size = 5.0
 shader_parameter/OCTAVES = 3
-shader_parameter/seed = 7.98705
+shader_parameter/seed = 4.6955
 shader_parameter/pixels = 1280.0
 shader_parameter/background_color = null
-shader_parameter/should_tile = false
+shader_parameter/should_tile = true
 shader_parameter/reduce_background = false
 shader_parameter/uv_correct = Vector2(1.77778, 1)
-shader_parameter/colorscheme = SubResource("GradientTexture1D_7rapr")
+shader_parameter/colorscheme = SubResource("GradientTexture1D_4g7p5")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uefit"]
+shader = ExtResource("5_wrmhd")
+shader_parameter/colorscheme = SubResource("GradientTexture1D_4g7p5")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mbkkf"]
+atlas = ExtResource("6_pk6iv")
+region = Rect2(50, 2, 21, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ctaf"]
+atlas = ExtResource("6_pk6iv")
+region = Rect2(0, 2, 21, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o5q57"]
+atlas = ExtResource("6_pk6iv")
+region = Rect2(75, 2, 21, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5pt7u"]
+atlas = ExtResource("6_pk6iv")
+region = Rect2(0, 2, 21, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jg65r"]
+atlas = ExtResource("6_pk6iv")
+region = Rect2(100, 2, 21, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wybx7"]
+atlas = ExtResource("6_pk6iv")
+region = Rect2(75, 2, 21, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_27hru"]
+atlas = ExtResource("6_pk6iv")
+region = Rect2(50, 2, 21, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ujfb"]
+atlas = ExtResource("6_pk6iv")
+region = Rect2(25, 2, 21, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p34p0"]
+atlas = ExtResource("6_pk6iv")
+region = Rect2(25, 2, 21, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kdn1e"]
+atlas = ExtResource("6_pk6iv")
+region = Rect2(50, 2, 21, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nkvoh"]
+atlas = ExtResource("6_pk6iv")
+region = Rect2(0, 2, 21, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gjiwj"]
+atlas = ExtResource("6_pk6iv")
+region = Rect2(0, 2, 21, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tptfw"]
+atlas = ExtResource("6_pk6iv")
+region = Rect2(50, 2, 21, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d1kc5"]
+atlas = ExtResource("6_pk6iv")
+region = Rect2(100, 2, 21, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_33fk0"]
+atlas = ExtResource("6_pk6iv")
+region = Rect2(75, 2, 21, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_godf0"]
+atlas = ExtResource("6_pk6iv")
+region = Rect2(100, 2, 21, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qjq6l"]
+atlas = ExtResource("6_pk6iv")
+region = Rect2(50, 2, 21, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tprxq"]
+atlas = ExtResource("6_pk6iv")
+region = Rect2(25, 2, 21, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_220ua"]
+atlas = ExtResource("6_pk6iv")
+region = Rect2(25, 2, 21, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lhvtj"]
+atlas = ExtResource("6_pk6iv")
+region = Rect2(75, 2, 21, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ud7qs"]
+atlas = ExtResource("6_pk6iv")
+region = Rect2(100, 2, 21, 21)
 
 [node name="PixelSpaceBackgroundGenerator" type="Control"]
 layout_mode = 3
@@ -43,6 +135,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_q17ry")
+button_Generate_New = null
+tiled = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
@@ -73,8 +167,134 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="StarContainer" type="Node2D" parent="."]
+[node name="StarsContainer" type="Node2D" parent="."]
 show_behind_parent = true
+
+[node name="Star" type="Sprite2D" parent="StarsContainer" instance=ExtResource("4_do460")]
+material = SubResource("ShaderMaterial_uefit")
+position = Vector2(1148, 610)
+texture = SubResource("AtlasTexture_mbkkf")
+script = ExtResource("7_qjsh2")
+
+[node name="@Sprite2D@80720" type="Sprite2D" parent="StarsContainer" instance=ExtResource("4_do460")]
+material = SubResource("ShaderMaterial_uefit")
+position = Vector2(742, 521)
+texture = SubResource("AtlasTexture_5ctaf")
+script = ExtResource("7_qjsh2")
+
+[node name="@Sprite2D@80721" type="Sprite2D" parent="StarsContainer" instance=ExtResource("4_do460")]
+material = SubResource("ShaderMaterial_uefit")
+position = Vector2(531, 93)
+texture = SubResource("AtlasTexture_o5q57")
+script = ExtResource("7_qjsh2")
+
+[node name="@Sprite2D@80722" type="Sprite2D" parent="StarsContainer" instance=ExtResource("4_do460")]
+material = SubResource("ShaderMaterial_uefit")
+position = Vector2(720, 606)
+texture = SubResource("AtlasTexture_5pt7u")
+script = ExtResource("7_qjsh2")
+
+[node name="@Sprite2D@80723" type="Sprite2D" parent="StarsContainer" instance=ExtResource("4_do460")]
+material = SubResource("ShaderMaterial_uefit")
+position = Vector2(842, 113)
+texture = SubResource("AtlasTexture_jg65r")
+script = ExtResource("7_qjsh2")
+
+[node name="@Sprite2D@80724" type="Sprite2D" parent="StarsContainer" instance=ExtResource("4_do460")]
+material = SubResource("ShaderMaterial_uefit")
+position = Vector2(49, 98)
+texture = SubResource("AtlasTexture_wybx7")
+script = ExtResource("7_qjsh2")
+
+[node name="@Sprite2D@80725" type="Sprite2D" parent="StarsContainer" instance=ExtResource("4_do460")]
+material = SubResource("ShaderMaterial_uefit")
+position = Vector2(788, 323)
+texture = SubResource("AtlasTexture_27hru")
+script = ExtResource("7_qjsh2")
+
+[node name="@Sprite2D@80726" type="Sprite2D" parent="StarsContainer" instance=ExtResource("4_do460")]
+material = SubResource("ShaderMaterial_uefit")
+position = Vector2(884, 584)
+texture = SubResource("AtlasTexture_2ujfb")
+script = ExtResource("7_qjsh2")
+
+[node name="@Sprite2D@80727" type="Sprite2D" parent="StarsContainer" instance=ExtResource("4_do460")]
+material = SubResource("ShaderMaterial_uefit")
+position = Vector2(1166, 699)
+texture = SubResource("AtlasTexture_p34p0")
+script = ExtResource("7_qjsh2")
+
+[node name="@Sprite2D@80728" type="Sprite2D" parent="StarsContainer" instance=ExtResource("4_do460")]
+material = SubResource("ShaderMaterial_uefit")
+position = Vector2(424, 140)
+texture = SubResource("AtlasTexture_kdn1e")
+script = ExtResource("7_qjsh2")
+
+[node name="@Sprite2D@80729" type="Sprite2D" parent="StarsContainer" instance=ExtResource("4_do460")]
+material = SubResource("ShaderMaterial_uefit")
+position = Vector2(165, 133)
+texture = SubResource("AtlasTexture_nkvoh")
+script = ExtResource("7_qjsh2")
+
+[node name="@Sprite2D@80730" type="Sprite2D" parent="StarsContainer" instance=ExtResource("4_do460")]
+material = SubResource("ShaderMaterial_uefit")
+position = Vector2(842, 303)
+texture = SubResource("AtlasTexture_gjiwj")
+script = ExtResource("7_qjsh2")
+
+[node name="@Sprite2D@80731" type="Sprite2D" parent="StarsContainer" instance=ExtResource("4_do460")]
+material = SubResource("ShaderMaterial_uefit")
+position = Vector2(1145, 608)
+texture = SubResource("AtlasTexture_tptfw")
+script = ExtResource("7_qjsh2")
+
+[node name="@Sprite2D@80732" type="Sprite2D" parent="StarsContainer" instance=ExtResource("4_do460")]
+material = SubResource("ShaderMaterial_uefit")
+position = Vector2(540, 701)
+texture = SubResource("AtlasTexture_d1kc5")
+script = ExtResource("7_qjsh2")
+
+[node name="@Sprite2D@80733" type="Sprite2D" parent="StarsContainer" instance=ExtResource("4_do460")]
+material = SubResource("ShaderMaterial_uefit")
+position = Vector2(383, 489)
+texture = SubResource("AtlasTexture_33fk0")
+script = ExtResource("7_qjsh2")
+
+[node name="@Sprite2D@80734" type="Sprite2D" parent="StarsContainer" instance=ExtResource("4_do460")]
+material = SubResource("ShaderMaterial_uefit")
+position = Vector2(1000, 130)
+texture = SubResource("AtlasTexture_godf0")
+script = ExtResource("7_qjsh2")
+
+[node name="@Sprite2D@80735" type="Sprite2D" parent="StarsContainer" instance=ExtResource("4_do460")]
+material = SubResource("ShaderMaterial_uefit")
+position = Vector2(93, 111)
+texture = SubResource("AtlasTexture_qjq6l")
+script = ExtResource("7_qjsh2")
+
+[node name="@Sprite2D@80736" type="Sprite2D" parent="StarsContainer" instance=ExtResource("4_do460")]
+material = SubResource("ShaderMaterial_uefit")
+position = Vector2(255, 508)
+texture = SubResource("AtlasTexture_tprxq")
+script = ExtResource("7_qjsh2")
+
+[node name="@Sprite2D@80737" type="Sprite2D" parent="StarsContainer" instance=ExtResource("4_do460")]
+material = SubResource("ShaderMaterial_uefit")
+position = Vector2(687, 287)
+texture = SubResource("AtlasTexture_220ua")
+script = ExtResource("7_qjsh2")
+
+[node name="@Sprite2D@80738" type="Sprite2D" parent="StarsContainer" instance=ExtResource("4_do460")]
+material = SubResource("ShaderMaterial_uefit")
+position = Vector2(1146, 200)
+texture = SubResource("AtlasTexture_lhvtj")
+script = ExtResource("7_qjsh2")
+
+[node name="@Sprite2D@80739" type="Sprite2D" parent="StarsContainer" instance=ExtResource("4_do460")]
+material = SubResource("ShaderMaterial_uefit")
+position = Vector2(471, 52)
+texture = SubResource("AtlasTexture_ud7qs")
+script = ExtResource("7_qjsh2")
 
 [node name="PlanetContainer" type="Node2D" parent="."]
 show_behind_parent = true

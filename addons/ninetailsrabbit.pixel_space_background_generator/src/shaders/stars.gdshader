@@ -21,7 +21,7 @@ float rand(vec2 coord, float tilesize) {
 float noise(vec2 coord, float tilesize){
 	vec2 i = floor(coord);
 	vec2 f = fract(coord);
-		
+
 	float a = rand(i, tilesize);
 	float b = rand(i + vec2(1.0, 0.0), tilesize);
 	float c = rand(i + vec2(0.0, 1.0), tilesize);
@@ -52,7 +52,7 @@ float circleNoise(vec2 uv, float tilesize) {
 	if (should_tile) {
 		uv = mod(uv, tilesize);
 	}
-	
+
     float uv_y = floor(uv.y);
     uv.x += uv_y*.31;
     vec2 f = fract(uv);
@@ -72,14 +72,14 @@ vec2 rotate(vec2 vec, float angle) {
 
 float cloud_alpha(vec2 uv, float tilesize) {
 	float c_noise = 0.0;
-	
+
 	// more iterations for more turbulence
 	int iters = 2;
 	for (int i = 0; i < iters; i++) {
 		c_noise += circleNoise(uv * 0.5 + (float(i+1)) + vec2(-0.3, 0.0), ceil(tilesize * 0.5));
 	}
 	float fbm = fbm(uv+c_noise, tilesize);
-	
+
 	return fbm;
 }
 
@@ -87,7 +87,7 @@ void fragment() {
 	// pixelizing and dithering
 	vec2 uv = floor((UV) * pixels) / pixels * uv_correct;
 	bool dith = dither(uv, UV);
-	
+
 	// noise for the dust
 	// the + vec2(x,y) is to create an offset in noise values
 	float n_alpha = fbm(uv * ceil(size * 0.5) +vec2(2,2), ceil(size * 0.5));
@@ -106,16 +106,16 @@ void fragment() {
 	if (dith) {
 		n_dust_lerp *= 1.1;
 	}
-	
+
 	// choose & apply colors
 	if (reduce_background) {
 		n_dust_lerp = pow(n_dust_lerp, 0.8) * 0.7;
 	}
-	
+
 	float col_value = floor(n_dust_lerp) / 7.0;
 	vec3 col = texture(colorscheme, vec2(col_value, 0.0)).rgb;
-	
-	
-	
+
+
+
 	COLOR = vec4(col, a_dust);
 }

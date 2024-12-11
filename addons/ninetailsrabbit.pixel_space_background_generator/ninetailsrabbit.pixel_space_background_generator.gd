@@ -3,7 +3,9 @@ extends EditorPlugin
 
 const UpdateNotifyToolScene = preload("updater/update_notify_tool.tscn")
 
+var inspector_plugin
 var update_notify_tool_instance: Node
+
 
 func _enter_tree() -> void:
 	MyPluginSettings.set_update_notification()
@@ -11,6 +13,9 @@ func _enter_tree() -> void:
 	
 	if not DirAccess.dir_exists_absolute(MyPluginSettings.PluginTemporaryReleaseUpdateDirectoryPath):
 		DirAccess.make_dir_recursive_absolute(MyPluginSettings.PluginTemporaryReleaseUpdateDirectoryPath)
+	
+	inspector_plugin = preload("inspector/inspector_button_plugin.gd").new()
+	add_inspector_plugin(inspector_plugin)
 	
 
 func _exit_tree() -> void:

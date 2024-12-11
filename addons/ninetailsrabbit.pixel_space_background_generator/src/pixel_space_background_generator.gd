@@ -6,6 +6,7 @@ const BackgroundPlanetScene: PackedScene = preload("res://addons/ninetailsrabbit
 const DefaultColorScheme: ColorGradient = preload("res://addons/ninetailsrabbit.pixel_space_background_generator/src/color_schemes/gradients/desert.tres")
 const DefaultBackgroundColor: Color = Color("171711")
 
+@export var button_Generate_New: String
 @export var tiled: bool = false:
 	set(value):
 		if value != tiled:
@@ -37,6 +38,10 @@ const DefaultBackgroundColor: Color = Color("171711")
 		if value != show_planets_behind:
 			show_planets_behind = value
 			_update()
+@export_category("Export")
+@export_dir var export_path: String = "res://space_backgrounds"
+@export var button_Export_Background: String
+
 @export_category("Stars")
 @export var display_stars: bool = true:
 	set(value):
@@ -106,7 +111,7 @@ const DefaultBackgroundColor: Color = Color("171711")
 @onready var background: ColorRect = $CanvasLayer/Background
 @onready var stars_dust: ColorRect = $StarsDust
 @onready var nebulae: ColorRect = $Nebulae
-@onready var stars_container: Node2D = $StarContainer
+@onready var stars_container: Node2D = $StarsContainer
 @onready var planet_container: Node2D = $PlanetContainer
 
 
@@ -127,13 +132,16 @@ func _enter_tree() -> void:
 
 func _ready() -> void:
 	change_background_color(background_color)
+	remove_stars()
+	remove_planets()
 	
 	stars_container.show_behind_parent = show_stars_behind
 	planet_container.show_behind_parent = show_planets_behind
 	
 	aspect = _calculate_aspect()
 	resized.connect(on_resized)
-	
+
+	_export_as_image()
 
 func generate_new() -> void:
 	_create_stars_dust()
@@ -239,7 +247,7 @@ func _create_star() -> void:
 
 
 func remove_stars() -> void:
-	for star in star_objects:
+	for star in stars_container.get_children():
 		star.queue_free()
 			
 	star_objects.clear()
@@ -297,7 +305,7 @@ func _create_planet() -> void:
 	
 
 func remove_planets() -> void:
-	for planet in planet_objects:
+	for planet in planet_container.get_children():
 		planet.queue_free()
 			
 	planet_objects.clear()
@@ -324,12 +332,42 @@ func _calculate_aspect() -> Vector2:
 	return Vector2(size.x / size.y, 1.0) if size.x > size.y else Vector2(1.0, size.x / size.y)
 
 
+func _export_as_image() -> Error:
+	await RenderingServer.frame_post_draw
+	
+	var viewport: Viewport = get_viewport()
+	var space_background: Image = viewport.get_texture().get_image()
+	
+	var create_dir_error: Error = DirAccess.make_dir_recursive_absolute(export_path)
+	
+	if create_dir_error != OK:
+		push_error("PixelSpaceBackgroundGenerator: Can't create directory '%s'. Error: %s" % [export_path, error_string(create_dir_error)])
+		return create_dir_error
+		
+	var screenshot_save_error = space_background.save_png("%s/%s.png" % [export_path, Time.get_datetime_string_from_system().replace(":", "_")])
+	
+	if screenshot_save_error != OK:
+		push_error("PixelSpaceBackgroundGenerator: Can't save screenshot image '%s'. Error: %s" % [export_path, error_string(screenshot_save_error)])
+	
+	if Engine.is_editor_hint():
+		EditorInterface.get_resource_filesystem().scan()
+		
+	return screenshot_save_error
+
 
 func _set_owner_to_edited_scene_root(node: Node) -> void:
 	if Engine.is_editor_hint() and node.get_tree():
 		node.owner = node.get_tree().edited_scene_root
 	
-	
+
+func _on_tool_button_pressed(text: String) -> void:
+	match text:
+		"Export Background":
+			_export_as_image()
+		"Generate New":
+			generate_new()
+
+
 func on_resized() -> void:
 	aspect = _calculate_aspect()
 	
