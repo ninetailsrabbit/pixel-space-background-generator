@@ -140,8 +140,7 @@ func _ready() -> void:
 	
 	aspect = _calculate_aspect()
 	resized.connect(on_resized)
-
-	_export_as_image()
+	
 
 func generate_new() -> void:
 	_create_stars_dust()

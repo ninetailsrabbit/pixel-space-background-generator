@@ -51,4 +51,6 @@ This scene also works on runtime and you can change the parameters to create bac
 
 ## Export background image 🖼️
 
+By default the images are exported into `res://space_backgrounds`. Feel free to change the exported variable `export path` to change the output directory
+
 The Image export currently **only works in-game**. If you export from the editor it will use the preview window with the zoom level and grey areas will appear.
