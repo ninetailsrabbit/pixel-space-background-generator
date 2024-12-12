@@ -8,10 +8,6 @@
 
 config_version=5
 
-[Pixel-Space-Background-Generator]
-
-config/ninetailsrabbit.pixel_space_background_generator/update_notification_enabled=true
-
 [application]
 
 config/name="Pixel-Space-Background-Generator"
