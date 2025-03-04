@@ -22,7 +22,7 @@ float rand(vec2 coord, float tilesize) {
 float noise(vec2 coord, float tilesize){
 	vec2 i = floor(coord);
 	vec2 f = fract(coord);
-		
+
 	float a = rand(i, tilesize);
 	float b = rand(i + vec2(1.0, 0.0), tilesize);
 	float c = rand(i + vec2(0.0, 1.0), tilesize);
@@ -53,7 +53,7 @@ float circleNoise(vec2 uv, float tilesize) {
 	if (should_tile) {
 		uv = mod(uv, tilesize / uv_correct);
 	}
-	
+
     float uv_y = floor(uv.y);
     uv.x += uv_y*.31;
     vec2 f = fract(uv);
@@ -72,27 +72,27 @@ vec2 rotate(vec2 vec, float angle) {
 
 float cloud_alpha(vec2 uv, float tilesize) {
 	float c_noise = 0.0;
-	
+
 	// more iterations for more turbulence
 	int iters = 2;
 	for (int i = 0; i < iters; i++) {
 		c_noise += circleNoise(uv * 0.5 + (float(i+1)) + vec2(-0.3, 0.0), ceil(tilesize * 0.5));
 	}
 	float fbm = fbm(uv+c_noise, tilesize);
-	
+
 	return fbm;
 }
 
 void fragment() {
 	// pixelizing and dithering
 	vec2 uv = floor((UV) * pixels) / pixels;
-	
+
 	// distance from center
 	float d =  distance(uv, vec2(0.5)) * 0.4;
-	
+
 	uv *= uv_correct;
 	bool dith = dither(uv, UV);
-	
+
 	// noise for the inside of the nebulae
 	float n = cloud_alpha(uv * size, size);
 	float n2 = fbm(uv * size + vec2(1, 1), size);
@@ -125,7 +125,7 @@ void fragment() {
 	} else {
 		col_value = floor(n_dust_lerp * 14.0) / 7.0;
 	}
-	
+
 	// apply colors
 	vec3 col = texture(colorscheme, vec2(col_value, 0.0)).rgb;
 	if (col_value < 0.1) {

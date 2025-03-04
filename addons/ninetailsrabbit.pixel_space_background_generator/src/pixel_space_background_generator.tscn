@@ -1,17 +1,17 @@
 [gd_scene load_steps=75 format=3 uid="uid://b66n0eejsls3y"]
 
-[ext_resource type="Script" path="res://addons/ninetailsrabbit.pixel_space_background_generator/src/pixel_space_background_generator.gd" id="1_q17ry"]
-[ext_resource type="Shader" path="res://addons/ninetailsrabbit.pixel_space_background_generator/src/shaders/stars.gdshader" id="2_3i42h"]
+[ext_resource type="Script" uid="uid://da5ovavpnj7qg" path="res://addons/ninetailsrabbit.pixel_space_background_generator/src/pixel_space_background_generator.gd" id="1_q17ry"]
+[ext_resource type="Shader" uid="uid://dxjg3ty8v6u4m" path="res://addons/ninetailsrabbit.pixel_space_background_generator/src/shaders/stars.gdshader" id="2_3i42h"]
 [ext_resource type="Resource" uid="uid://cpgyxlmfa1ict" path="res://addons/ninetailsrabbit.pixel_space_background_generator/src/color_schemes/gradients/nyx8.tres" id="2_7mman"]
-[ext_resource type="Shader" path="res://addons/ninetailsrabbit.pixel_space_background_generator/src/shaders/nebulae.gdshader" id="2_fo25n"]
+[ext_resource type="Shader" uid="uid://cu0obiw1ps122" path="res://addons/ninetailsrabbit.pixel_space_background_generator/src/shaders/nebulae.gdshader" id="2_fo25n"]
 [ext_resource type="PackedScene" uid="uid://c2c2skcgqe6cy" path="res://addons/ninetailsrabbit.pixel_space_background_generator/src/components/background_star.tscn" id="4_do460"]
-[ext_resource type="Shader" path="res://addons/ninetailsrabbit.pixel_space_background_generator/src/shaders/background_star.gdshader" id="5_wrmhd"]
+[ext_resource type="Shader" uid="uid://equd8f3mamd2" path="res://addons/ninetailsrabbit.pixel_space_background_generator/src/shaders/background_star.gdshader" id="5_wrmhd"]
 [ext_resource type="Texture2D" uid="uid://5l1y64gov0sk" path="res://addons/ninetailsrabbit.pixel_space_background_generator/assets/textures/stars-special.png" id="6_pk6iv"]
-[ext_resource type="Script" path="res://addons/ninetailsrabbit.pixel_space_background_generator/src/components/background_star.gd" id="7_qjsh2"]
+[ext_resource type="Script" uid="uid://dwusfc7fan5re" path="res://addons/ninetailsrabbit.pixel_space_background_generator/src/components/background_star.gd" id="7_qjsh2"]
 [ext_resource type="PackedScene" uid="uid://0iun7c3u2voi" path="res://addons/ninetailsrabbit.pixel_space_background_generator/src/components/planet.tscn" id="8_prlmo"]
-[ext_resource type="Shader" path="res://addons/ninetailsrabbit.pixel_space_background_generator/src/shaders/planet.gdshader" id="9_qo7an"]
+[ext_resource type="Shader" uid="uid://b888oyvuw3ut3" path="res://addons/ninetailsrabbit.pixel_space_background_generator/src/shaders/planet.gdshader" id="9_qo7an"]
 [ext_resource type="Texture2D" uid="uid://rl7irgwqmaef" path="res://addons/ninetailsrabbit.pixel_space_background_generator/assets/textures/100x100.png" id="10_n2inn"]
-[ext_resource type="Script" path="res://addons/ninetailsrabbit.pixel_space_background_generator/src/components/planet.gd" id="11_wbsi2"]
+[ext_resource type="Script" uid="uid://dbvg4shw3pf68" path="res://addons/ninetailsrabbit.pixel_space_background_generator/src/components/planet.gd" id="11_wbsi2"]
 
 [sub_resource type="Gradient" id="Gradient_yecbm"]
 offsets = PackedFloat32Array(0, 0, 0.143, 0.286, 0.429, 0.571, 0.714, 0.857, 1)
@@ -29,8 +29,8 @@ shader_parameter/seed = 9.50042
 shader_parameter/pixels = 1280.0
 shader_parameter/should_tile = true
 shader_parameter/reduce_background = false
-shader_parameter/uv_correct = Vector2(1.77778, 1)
 shader_parameter/colorscheme = SubResource("GradientTexture1D_qc7uq")
+shader_parameter/uv_correct = Vector2(1.77778, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xwh1x"]
 shader = ExtResource("2_fo25n")
@@ -38,11 +38,11 @@ shader_parameter/size = 5.0
 shader_parameter/OCTAVES = 3
 shader_parameter/seed = 4.45035
 shader_parameter/pixels = 1280.0
-shader_parameter/background_color = null
+shader_parameter/colorscheme = SubResource("GradientTexture1D_qc7uq")
+shader_parameter/background_color = Color(0, 0, 0, 1)
 shader_parameter/should_tile = true
 shader_parameter/reduce_background = false
 shader_parameter/uv_correct = Vector2(1.77778, 1)
-shader_parameter/colorscheme = SubResource("GradientTexture1D_qc7uq")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_uefit"]
 shader = ExtResource("5_wrmhd")
@@ -274,8 +274,8 @@ shader_parameter/size = 5.365
 shader_parameter/OCTAVES = 3
 shader_parameter/seed = 9.24466
 shader_parameter/pixels = 100.0
-shader_parameter/light_origin = Vector2(0.705396, 0.499759)
 shader_parameter/colorscheme = SubResource("GradientTexture1D_qc7uq")
+shader_parameter/light_origin = Vector2(0.705396, 0.499759)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ukaae"]
 shader = ExtResource("9_qo7an")
@@ -283,8 +283,8 @@ shader_parameter/size = 5.365
 shader_parameter/OCTAVES = 3
 shader_parameter/seed = 4.04937
 shader_parameter/pixels = 100.0
-shader_parameter/light_origin = Vector2(0.118168, 0.230265)
 shader_parameter/colorscheme = SubResource("GradientTexture1D_qc7uq")
+shader_parameter/light_origin = Vector2(0.118168, 0.230265)
 
 [node name="PixelSpaceBackgroundGenerator" type="Control"]
 layout_mode = 3
