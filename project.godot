@@ -8,11 +8,15 @@
 
 config_version=5
 
+[Pixel-Space-Background-Generator]
+
+config/ninetailsrabbit.pixel_space_background_generator/update_notification_enabled=true
+
 [application]
 
 config/name="Pixel-Space-Background-Generator"
 config/description="Port to Godot 4 for the pixel space background generator by deep-fold"
-config/version="1.0.0"
+config/version="1.0.1"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
